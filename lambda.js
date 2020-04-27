@@ -32,20 +32,30 @@ const actions = {
       // however the algorithm regex seems broken in their docs
       // matching to a word should be enough to catch it
       if (ref.match(/^\w+:[A-Fa-f0-9]+$/)) {
-        selectorObj = { imageDigest: ref };
+        selectorObj = {
+          imageDigest: ref
+        };
       } else {
-        selectorObj = { imageTag: ref };
+        selectorObj = {
+          imageTag: ref
+        };
       }
 
-      const { images } = await ecr
+      const {
+        images
+      } = await ecr
         .batchGetImage({
           imageIds: [selectorObj],
-          repositoryName: name
+          repositoryName: name,
+          registryId: process.env.registry_id
         })
         .promise();
 
       const image = images[0];
-      if (!image) return { statusCode: 404, body: "{}" };
+      if (!image) return {
+        statusCode: 404,
+        body: "{}"
+      };
       const manifest = JSON.parse(image.imageManifest);
 
       return {
@@ -62,7 +72,8 @@ const actions = {
       const url = await ecr
         .getDownloadUrlForLayer({
           repositoryName: name,
-          layerDigest: digest
+          layerDigest: digest,
+          registryId: process.env.registry_id
         })
         .promise();
 
@@ -89,7 +100,9 @@ exports.handler = async event => {
   try {
     fn = actions[action][context.httpMethod.toLowerCase()];
   } catch (e) {
-    return { statusCode: 404 };
+    return {
+      statusCode: 404
+    };
   }
 
   return fn(name, reference).catch(e => {
