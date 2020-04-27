@@ -37,6 +37,8 @@ After deployment is completed, you will be able to `docker pull` images anonymou
 $ docker pull c2rbvtozqf.execute-api.cn-northwest-1.amazonaws.com.cn/dockerhub/nginx
 ```
 
+![](images/01.png)
+
 ### Destroy the Stack
 
 ```bash
