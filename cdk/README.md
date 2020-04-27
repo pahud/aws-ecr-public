@@ -5,6 +5,13 @@ You may deploy this service with AWS CDK to any AWS commercial regions including
 Cross-account Amazon ECR registry access is supported as well.
 
 
+Install required npm modules
+
+```bash
+$ cd cdk
+$ npm install
+```
+
 To deploy it with Amaozn ECR of the same account as the origin
 
 ```bash
