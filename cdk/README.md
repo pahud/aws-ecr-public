@@ -27,7 +27,7 @@ $ cdk deploy -c registry_id=ECR_REGISTRY_ID
 To deploy it with [nwcdlabs/container-mirror](https://github.com/nwcdlabs/container-mirror) as the ECR upstream origin
 
 ```bash
-$ cdk deploy --profile zhy registry_id=048912060910      
+$ cdk deploy --profile zhy -c registry_id=048912060910      
 ```
 Outputs
 ```
